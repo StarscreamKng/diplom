@@ -38,14 +38,11 @@ public class EmailService {
 
 
     public void sendEmailToAllSubscribers(String subject, String message) {
-        taskExecutor.execute(() ->
-                subscriberRepository
-                        .findAll()
-                        .stream()
-                        .filter(Subscriber::getEnabled)
-                        .peek(s -> log.info("Send mail to: " + s))
-                        .forEach(s -> {
-                            send(subject, message, s.getEmail());
-                        }));
+        subscriberRepository
+                .findAll()
+                .stream()
+                .filter(Subscriber::getEnabled)
+                .peek(s -> log.info("Send mail to: " + s))
+                .forEach(s -> taskExecutor.execute(() -> send(subject, message, s.getEmail())));
     }
 }

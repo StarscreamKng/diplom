@@ -6,21 +6,16 @@
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <!-- SMTP settings -->
         <property name="host" value="smtp.gmail.com" />
-        <property name="port" value="465" />
+        <property name="port" value="587" />
         <property name="username" value="diplomjava@gmail.com" />
-        <property name="password" value="vasyapupkin" />
+        <property name="password" value="lgacuzzxfsahtzhs" />
 
         <property name="javaMailProperties">
-            <!-- additional properties specific to JavaMail -->
             <props>
-<!--                <prop key="mail.transport.protocol">smtp</prop>-->
                 <prop key="mail.smtp.auth">true</prop>
-<!--                <prop key="mail.smtp.starttls.enable">true</prop>-->
-<!--                <prop key="mail.smtp.host">smtp.gmail.com</prop>-->
+                <prop key="mail.smtp.starttls.enable">true</prop>
+                <prop key="mail.smtp.starttls.required">true</prop>
                 <prop key="mail.debug">true</prop>
-                <prop key="mail.smtp.port">465</prop>
-                <prop key="mail.smtp.socketFactory.port">465</prop>
-                <prop key="mail.smtp.socketFactory.class">javax.net.ssl.SSLSocketFactory</prop>
             </props>
         </property>
     </bean>
