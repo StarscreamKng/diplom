@@ -22,7 +22,7 @@
                     <a href="${catUrl}" class="post-tag">${post.category.name}</a>
                     <h4><a href="/post/${post.id}" class="post-headline">${post.title}</a></h4>
                     <div class="post-meta">
-                        <p><a href="#">${post.published.dayOfMonth} ${post.published.month}</a></p>
+                        <p><a href="<spring:url value="/search?date=${post.published.toLocalDate()}"/>">${post.published.dayOfMonth} ${post.published.month}</a></p>
                     </div>
                 </div>
             </div>

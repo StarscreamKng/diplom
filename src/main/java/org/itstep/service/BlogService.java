@@ -9,6 +9,9 @@ import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -127,7 +130,9 @@ public class BlogService {
         return postRepository
                 .findAllByTitleContainingIgnoreCaseOrTextContainingIgnoreCase(query, query, PageRequest.of(page, size));
     }
-
+    public Page<Post> getAllPostsByDate(LocalDate published, int page, int size){
+        return postRepository.findAllByPublishedIsBetween(published.atStartOfDay(), published.plusDays(1).atStartOfDay(), PageRequest.of(page, size));
+    }
 
     public void subscribe(Subscriber subscriber){
         subscriberRepository.save(subscriber);

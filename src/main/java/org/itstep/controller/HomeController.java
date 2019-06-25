@@ -12,6 +12,8 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import sun.security.krb5.internal.PAData;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller
@@ -65,9 +67,11 @@ public class HomeController {
     }
 
     @GetMapping(path = "/search")
-    public String search(@RequestParam String query, Model model,
-                  @RequestParam(required = false, name = "page") Integer page,
-                  @RequestParam(required = false, name = "size") Integer size) {
+    public String search(@RequestParam(required = false, name = "query") String query,
+                         @RequestParam(required = false, name = "date") String published,
+                         @RequestParam(required = false, name = "page") Integer page,
+                         @RequestParam(required = false, name = "size") Integer size,
+                         Model model) {
         log.info(query);
         if (size == null) {
             size = 5;
@@ -75,12 +79,19 @@ public class HomeController {
         if (page == null) {
             page = 0;
         }
-        Page<Post> postsByQuery = blogService.getPostsByQuery(query, page, size);
+        Page<Post> postsByQuery = null;
+        if (query != null) {
+            postsByQuery = blogService.getPostsByQuery(query, page, size);
+        } else {
+            LocalDate parse = LocalDate.parse(published);
+            postsByQuery = blogService.getAllPostsByDate(parse, page, size);
+        }
         List<Post> allPosts = postsByQuery.getContent();
         model.addAttribute("posts", allPosts);
         model.addAttribute("page", page);
         model.addAttribute("pages", postsByQuery.getTotalPages());
         model.addAttribute("url", "/search?query=" + query);
+        model.addAttribute("url", "/search?date=" + published);
         return "index";
     }
 

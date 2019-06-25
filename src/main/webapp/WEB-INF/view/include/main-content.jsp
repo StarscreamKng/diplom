@@ -26,7 +26,7 @@
                                 <div class="single-blog-thumbnail">
                                     <img src="<spring:url value="/resources/img/blog-img/${post.imageUrl}"/>" alt="">
                                     <div class="post-date">
-                                        <a href="#">${post.published.dayOfMonth}
+                                        <a href="<spring:url value="/search?date=${post.published.toLocalDate()}"/>">${post.published.dayOfMonth}
                                             <span>${post.published.month}</span></a>
                                     </div>
                                 </div>

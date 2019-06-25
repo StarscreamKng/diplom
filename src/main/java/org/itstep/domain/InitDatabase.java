@@ -10,6 +10,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -71,7 +72,7 @@ public class InitDatabase {
                     "3.jpg", cat1, Arrays.asList(tag1, tag2, tag3), false, null));
 
             for (int i = 4; i < 8; i++) {
-                blogService.savePost(new Post(null, author1, null, "We love colors in 2018",
+                blogService.savePost(new Post(null, author1, LocalDateTime.now().minusDays(2), "We love colors in 2018",
                         "Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum " +
                                 "convallis risus vel condimentum. Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt.",
                         "4.jpg", cat2,
@@ -83,7 +84,7 @@ public class InitDatabase {
                         "condimentum. Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt.", "7.jpg", cat1,
                         Arrays.asList(tag1, tag3, tag4), true, null));
 
-                blogService.savePost(new Post(null, author2, null, "Party people in the house", "Curabitur venenatis efficitur " +
+                blogService.savePost(new Post(null, author2, LocalDateTime.now().minusDays(2), "Party people in the house", "Curabitur venenatis efficitur " +
                         "lorem sed tempor. Integer aliquet tempor cursus. Nullam vestibulum convallis risus vel condimentum. " +
                         "Nullam auctor lorem in libero luctus, vel volutpat quam tincidunt.", "5.jpg", cat3,
                         Arrays.asList(tag3, tag4), false, null));
