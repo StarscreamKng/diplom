@@ -137,4 +137,8 @@ public class BlogService {
     public void subscribe(Subscriber subscriber){
         subscriberRepository.save(subscriber);
     }
+
+    public void register(Author author){
+        authorRepository.save(author);
+    }
 }

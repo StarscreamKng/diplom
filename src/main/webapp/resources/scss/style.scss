@@ -478,7 +478,7 @@ img {
     }
 }
 
-#breakingNewsTicker {
+#account {
     &.ticker {
         width: 100%;
         text-align: left;
@@ -1612,7 +1612,7 @@ textarea:focus ~ .highlight {
 .coming-soon-area {
     position: relative;
     z-index: 1;
-    #breakingNewsTicker.ticker ul li a {
+    #account.ticker ul li a {
         color: $color-white;
     }
     .header-area .top-header .top-social-area a {

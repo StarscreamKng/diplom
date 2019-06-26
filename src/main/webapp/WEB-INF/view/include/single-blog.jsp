@@ -12,7 +12,7 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="post-date">
-                                <a href="#">${model.published.dayOfMonth} <span>${model.published.month}</span></a>
+                                <a href="<spring:url value="/search?date=${model.published.toLocalDate()}"/>">${model.published.dayOfMonth} <span>${model.published.month}</span></a>
                             </div>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
                         <a href="#" class="post-tag">${model.tags.get(0).name}</a>
                         <h4><a href="#" class="post-headline mb-0">${model.title}</a></h4>
                         <div class="post-meta mb-50">
-                            <p>By <a href="#">${model.author.fullName}</a></p>
+                            <p>By <a href="<spring:url value="?author=${model.author.id}"/>">${model.author.fullName}</a></p>
                             <c:if test="${model.comments != null && model.comments.size() > 0}">
                                 <p>${model.comments.size()} comments</p>
                             </c:if>

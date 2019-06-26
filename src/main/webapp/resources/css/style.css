@@ -315,35 +315,6 @@ img {
   z-index: 100;
   -webkit-transition-duration: 500ms;
   transition-duration: 500ms; }
-  .header-area .top-header {
-    height: 65px; }
-    @media only screen and (max-width: 767px) {
-      .header-area .top-header {
-        height: 90px; } }
-    @media only screen and (min-width: 576px) and (max-width: 767px) {
-      .header-area .top-header {
-        height: 70px; } }
-    .header-area .top-header .top-social-area {
-      text-align: right; }
-      @media only screen and (max-width: 767px) {
-        .header-area .top-header .top-social-area {
-          text-align: left; } }
-      .header-area .top-header .top-social-area a {
-        display: inline-block;
-        padding: 5px 15px;
-        color: #000000;
-        font-size: 13px; }
-        .header-area .top-header .top-social-area a:hover, .header-area .top-header .top-social-area a:focus {
-          color: #30336b; }
-        @media only screen and (min-width: 768px) and (max-width: 991px) {
-          .header-area .top-header .top-social-area a {
-            padding: 5px 7px; } }
-        @media only screen and (max-width: 767px) {
-          .header-area .top-header .top-social-area a {
-            padding: 5px 7px; } }
-        @media only screen and (min-width: 576px) and (max-width: 767px) {
-          .header-area .top-header .top-social-area a {
-            padding: 5px 4px; } }
   .header-area .logo-area {
     height: 170px;
     border-top: 1px solid #e1e1e1;
@@ -396,23 +367,6 @@ img {
     .header-area .is-sticky .original-nav-area .classy-navbar {
       height: 70px; }
 
-#breakingNewsTicker.ticker {
-  width: 100%;
-  text-align: left;
-  position: relative;
-  overflow: hidden; }
-  #breakingNewsTicker.ticker ul {
-    width: 100%;
-    position: relative; }
-    #breakingNewsTicker.ticker ul li {
-      display: none;
-      width: 100%; }
-      #breakingNewsTicker.ticker ul li a {
-        color: #000000;
-        font-size: 14px;
-        text-transform: uppercase; }
-        #breakingNewsTicker.ticker ul li a:hover {
-          color: #30336b; }
 
 .modal-backdrop.show {
   opacity: .8 !important; }
@@ -1314,10 +1268,6 @@ textarea:focus ~ .highlight {
 .coming-soon-area {
   position: relative;
   z-index: 1; }
-  .coming-soon-area #breakingNewsTicker.ticker ul li a {
-    color: #ffffff; }
-  .coming-soon-area .header-area .top-header .top-social-area a {
-    color: #ffffff; }
   .coming-soon-area .header-area .logo-area {
     height: auto;
     padding: 130px 0 100px;

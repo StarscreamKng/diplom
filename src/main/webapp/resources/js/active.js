@@ -18,7 +18,7 @@
 
     // :: Newsticker Active Code
     if ($.fn.simpleTicker) {
-        $.simpleTicker($("#breakingNewsTicker"), {
+        $.simpleTicker($("#account"), {
             speed: 1000,
             delay: 3500,
             easing: 'swing',

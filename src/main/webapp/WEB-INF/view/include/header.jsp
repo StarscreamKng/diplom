@@ -18,7 +18,6 @@
 
     <!-- Style CSS -->
     <link rel="stylesheet" href="<spring:url value="/resources/css/style.css"/>"/>
-
 </head>
 
 <body>
@@ -56,31 +55,6 @@
     <div class="top-header">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
-                <!-- Breaking News Area -->
-                <div class="col-12 col-sm-8">
-                    <div class="breaking-news-area">
-                        <div id="breakingNewsTicker" class="ticker">
-                            <ul>
-                                <li><a href="#">Hello World!</a></li>
-                                <li><a href="#">Hello Universe!</a></li>
-                                <li><a href="#">Hello Original!</a></li>
-                                <li><a href="#">Hello Earth!</a></li>
-                                <li><a href="#">Hello Colorlib!</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- Top Social Area -->
-                <div class="col-12 col-sm-4">
-                    <div class="top-social-area">
-                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Facebook">
-                            <i class="fa fa-facebook" aria-hidden="true"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Twitter"><i
-                                class="fa fa-twitter" aria-hidden="true"></i></a>
-                        <a href="#" data-toggle="tooltip" data-placement="bottom" title="Linkedin"><i
-                                class="fa fa-linkedin" aria-hidden="true"></i></a>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -124,7 +98,10 @@
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul>
+                                <li><a href="/register">Register</a></li>
+                                <li><a href="/">Log In</a></li>
                                 <li><a href="/">Home</a></li>
+                                <li><a href="/">New Post</a></li>
                                 <li><a href="#">Pages</a>
                                     <ul class="dropdown">
                                         <li><a href="../index.jsp">Home</a></li>
@@ -138,47 +115,11 @@
                                     <ul class="dropdown">
                                         <%--@elvariable id="categories" type="java.util.List<org.itstep.domain.entity.Category>"--%>
                                         <c:forEach items="${categories}" var="category">
-                                            <li><a href="#">${category.name}</a></li>
+                                            <li><a href="<spring:url value="?category=${category.id}"/>">${category.name}</a></li>
                                         </c:forEach>
                                     </ul>
                                 </li>
                                 <li><a href="../about-us.jsp">About Us</a></li>
-                                <li><a href="#">Megamenu</a>
-                                    <div class="megamenu">
-                                        <ul class="single-mega cn-col-4">
-                                            <li class="title">Headline 1</li>
-                                            <li><a href="#">Mega Menu Item 1</a></li>
-                                            <li><a href="#">Mega Menu Item 2</a></li>
-                                            <li><a href="#">Mega Menu Item 3</a></li>
-                                            <li><a href="#">Mega Menu Item 4</a></li>
-                                            <li><a href="#">Mega Menu Item 5</a></li>
-                                        </ul>
-                                        <ul class="single-mega cn-col-4">
-                                            <li class="title">Headline 2</li>
-                                            <li><a href="#">Mega Menu Item 1</a></li>
-                                            <li><a href="#">Mega Menu Item 2</a></li>
-                                            <li><a href="#">Mega Menu Item 3</a></li>
-                                            <li><a href="#">Mega Menu Item 4</a></li>
-                                            <li><a href="#">Mega Menu Item 5</a></li>
-                                        </ul>
-                                        <ul class="single-mega cn-col-4">
-                                            <li class="title">Headline 3</li>
-                                            <li><a href="#">Mega Menu Item 1</a></li>
-                                            <li><a href="#">Mega Menu Item 2</a></li>
-                                            <li><a href="#">Mega Menu Item 3</a></li>
-                                            <li><a href="#">Mega Menu Item 4</a></li>
-                                            <li><a href="#">Mega Menu Item 5</a></li>
-                                        </ul>
-                                        <ul class="single-mega cn-col-4">
-                                            <li class="title">Headline 4</li>
-                                            <li><a href="#">Mega Menu Item 1</a></li>
-                                            <li><a href="#">Mega Menu Item 2</a></li>
-                                            <li><a href="#">Mega Menu Item 3</a></li>
-                                            <li><a href="#">Mega Menu Item 4</a></li>
-                                            <li><a href="#">Mega Menu Item 5</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
                                 <li><a href="../contact.jsp">Contact</a></li>
                             </ul>
 

@@ -61,13 +61,3 @@
 </footer>
 <!-- ##### Footer Area End ##### -->
 
-<!-- jQuery (Necessary for All JavaScript Plugins) -->
-<script src="<spring:url value="/resources/js/jquery/jquery-2.2.4.min.js"/>"></script>
-<!-- Popper js -->
-<script src="<spring:url value="/resources/js/popper.min.js"/>"></script>
-<!-- Bootstrap js -->
-<script src="<spring:url value="/resources/js/bootstrap.min.js"/>"></script>
-<!-- Plugins js -->
-<script src="<spring:url value="/resources/js/plugins.js"/>"></script>
-<!-- Active js -->
-<script src="<spring:url value="/resources/js/active.js"/>"></script>
