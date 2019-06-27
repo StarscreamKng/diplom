@@ -53,6 +53,14 @@
         </div>
         <div class="col-12 col-md-6">
             <div class="group">
+                <form:input path="password" type="password" required="required"/>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label>Password</label>
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="group">
                 <form:textarea path="about" id="about"/>
                 <span class="highlight"></span>
                 <span class="bar"></span>

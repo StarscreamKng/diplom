@@ -51,6 +51,10 @@
         <div class="input"><form:input path="surname"/> <span class="error"><form:errors path="surname"/></span></div>
     </div>
     <div class="group">
+        <form:label path="password" type="password"> Password: </form:label>
+        <div class="input"><form:input path="password"/> <span class="error"><form:errors path="password"/></span></div>
+    </div>
+    <div class="group">
         <form:label path="email" type="email"> Email: </form:label>
         <div class="input"><form:input path="email"/> <span class="error"><form:errors path="email"/></span></div>
     </div>
@@ -69,6 +73,7 @@
         <th>id</th>
         <th>name</th>
         <th>surname</th>
+        <th>password</th>
         <th>email</th>
         <th>about</th>
         <th>avatarUrl</th>
@@ -78,6 +83,7 @@
             <td>${author.id}</td>
             <td>${author.name}</td>
             <td>${author.surname}</td>
+            <td>${author.password}</td>
             <td>${author.email}</td>
             <td>${author.about}</td>
             <td>${author.avatarUrl}</td>
