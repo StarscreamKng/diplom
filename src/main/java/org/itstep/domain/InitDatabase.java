@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import lombok.val;
 import org.itstep.domain.entity.*;
 import org.itstep.service.BlogService;
+import org.itstep.service.SecurityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -20,17 +21,28 @@ import java.util.Collections;
 public class InitDatabase {
 
     private BlogService blogService;
+    private SecurityService securityService;
     private static boolean isInitialized;
 
     @Autowired
-    public InitDatabase(BlogService blogService) {
+    public InitDatabase(BlogService blogService, SecurityService securityService) {
         this.blogService = blogService;
+        this.securityService = securityService;
     }
+
+
 
     @EventListener
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
         if (!isInitialized) {
             log.info("Init database: " + blogService);
+
+            log.info("Create admin");
+            securityService.createAdmin(new User("admin", securityService.encode("admin")));
+            securityService.createAdmin(new User("johnfisher", securityService.encode("johnfisher")));
+
+            securityService.createAuthor(new User("john", securityService.encode("john")));
+            securityService.createAuthor(new User("mary", securityService.encode("mary")));
 
             log.info("Init tags");
             val tag1 = blogService.saveTag(new Tag(null, "design", null));
@@ -49,16 +61,16 @@ public class InitDatabase {
             val cat4 = blogService.saveCategory(new Category(null, "places", null));
 
             log.info("Init author");
-            val author1 = blogService.saveAuthor(new Author(null, null, "James", "Smith",
-                    "jamessmith@gmail.com", Status.ACTIVE, null,
+            val author1 = blogService.saveAuthor(new Author("James", "Smith",
+                    "jamessmith@gmail.com", "jamessmith",Status.ACTIVE,
                     "Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam\n" +
                             " vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero luctus, vel\n" +
                             " volutpat quam tincidunt. Nullam vestibulum convallis risus vel condimentum. Nullam auctor\n" +
                             " lorem in libero.",
                     "/img/bg-img/b6.jpg"));
 
-            val author2 = blogService.saveAuthor(new Author(null, null, "Jake", "Fisher",
-                    "jakefisher@gmail.com", Status.ACTIVE, null,
+            val author2 = blogService.saveAuthor(new Author( "Jake", "Fisher",
+                    "jakefisher@gmail.com", "jakefisher" ,Status.ACTIVE,
                     "Curabitur venenatis efficitur lorem sed tempor. Integer aliquet tempor cursus. Nullam\n" +
                             " vestibulum convallis risus vel condimentum. Nullam auctor lorem in libero luctus, vel\n" +
                             " volutpat quam tincidunt. Nullam vestibulum convallis risus vel condimentum. Nullam auctor\n" +

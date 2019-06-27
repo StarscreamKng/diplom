@@ -1,7 +1,8 @@
 package org.itstep.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.itstep.domain.entity.*;
+import org.itstep.domain.entity.Post;
+import org.itstep.domain.entity.Subscriber;
 import org.itstep.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,11 +10,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-import sun.security.krb5.internal.PAData;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Controller

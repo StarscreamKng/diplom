@@ -10,7 +10,9 @@
         <intercept-url pattern="/console*" access="ROLE_ADMIN"/>
         <intercept-url pattern="*" access="ROLE_ANONYMOUS,ROLE_ADMIN"/>
         <anonymous username="guest" granted-authority="ROLE_ANONYMOUS"/>
-        <http-basic/>
+        <form-login />
+        <logout/>
+<!--        <http-basic/>-->
         <csrf disabled="true"/>
         <headers>
             <frame-options disabled="true"/>
@@ -18,13 +20,19 @@
     </http>
 
     <authentication-manager>
+<!--        <authentication-provider>-->
+<!--            <password-encoder ref="passwordEncoder"/>-->
+<!--            <user-service>-->
+<!--                &lt;!&ndash;password = admin&ndash;&gt;-->
+<!--                <user name="admin" password="$2a$10$RFepP.L7LTgZQ8STnpifGua5Srv7Pt9vVVwh23LtYDGuo476OCMNq"-->
+<!--                      authorities="ROLE_ADMIN"/>-->
+<!--            </user-service>-->
+<!--        </authentication-provider>-->
         <authentication-provider>
             <password-encoder ref="passwordEncoder"/>
-            <user-service>
-                <!--password = admin-->
-                <user name="admin" password="$2a$10$RFepP.L7LTgZQ8STnpifGua5Srv7Pt9vVVwh23LtYDGuo476OCMNq"
-                      authorities="ROLE_ADMIN"/>
-            </user-service>
+            <jdbc-user-service data-source-ref="embeddedDBDataSource"
+                               users-by-username-query="select username, password, enabled from users where username=?"
+                               authorities-by-username-query="select username, authority from authorities join users where username=?"/>
         </authentication-provider>
     </authentication-manager>
 

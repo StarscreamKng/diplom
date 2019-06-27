@@ -21,13 +21,18 @@
     <link rel="stylesheet" href="<spring:url value="/resources/css/style.css"/>"/>
 
     <title>Register</title>
+    <style>
+        body {
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
-<h1>Register</h1>
+<h1 class="text-center">Register</h1>
 <%--@elvariable id="model" type="org.itstep.domain.entity.Author"--%>
-<form:form method="post" modelAttribute="model" action="register" enctype="multipart/form-data">
+<form:form method="post" cssClass="container" modelAttribute="model" action="register" enctype="multipart/form-data">
     <div class="row">
-        <div class="col-12 col-md-6">
+        <div class="col-md-10 offset-md-2">
             <div class="group">
                 <form:input path="name" required="required"/>
                 <span class="highlight"></span>
@@ -35,7 +40,7 @@
                 <label>Name</label>
             </div>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col-md-10 offset-md-2">
             <div class="group">
                 <form:input path="surname" required="required"/>
                 <span class="highlight"></span>
@@ -43,7 +48,7 @@
                 <label>Surname</label>
             </div>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col-md-10 offset-md-2">
             <div class="group">
                 <form:input path="email" type="email" id="email" required="required"/>
                 <span class="highlight"></span>
@@ -51,7 +56,7 @@
                 <label>Email</label>
             </div>
         </div>
-        <div class="col-12 col-md-6">
+        <div class="col-md-10 offset-md-2">
             <div class="group">
                 <form:input path="password" type="password" required="required"/>
                 <span class="highlight"></span>
@@ -59,25 +64,10 @@
                 <label>Password</label>
             </div>
         </div>
-        <div class="col-12 col-md-6">
-            <div class="group">
-                <form:textarea path="about" id="about"/>
-                <span class="highlight"></span>
-                <span class="bar"></span>
-                <label>About</label>
-            </div>
-        </div>
-        <div class="col-12 col-md-6">
-            <div class="group">
-                <form:input path="avatarUrl" id="avatar" type="file"/>
-                <label>Avatar</label>
-            </div>
-        </div>
-        <div class="col-12">
-            <button type="submit" class="btn original-btn">Register</button>
+        <div class="col-md-10 offset-md-2">
+            <button type="submit" class="btn original-btn float-right">Register</button>
         </div>
     </div>
 </form:form>
-<%@include file="include/footer.jsp"%>
 </body>
 </html>
