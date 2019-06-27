@@ -1,5 +1,6 @@
 <%@page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,7 +63,7 @@
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">
-                    <a href="/" class="original-logo">
+                    <a href="<spring:url value="/"/>" class="original-logo">
                         <img src="<spring:url value="/resources/img/core-img/logo.png"/>" alt=""></a>
                 </div>
             </div>
@@ -96,9 +97,20 @@
                         <!-- Nav Start -->
                         <div class="classynav">
                             <ul>
-                                <li><a href="/register">Register</a></li>
-                                <li><a href="/">Log In</a></li>
-                                <li><a href="/">Home</a></li>
+                                <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                    <li><a href="<spring:url value="/admin"/>">Admin panel</a></li>
+                                </sec:authorize>
+                                <sec:authorize access="hasRole('ROLE_AUTHOR')">
+                                    <li><a href="<spring:url value="/control"/>">Control panel</a></li>
+                                </sec:authorize>
+                                <sec:authorize access="!isAuthenticated()">
+                                    <li><a href="<spring:url value="/register"/>">Register</a></li>
+                                    <li><a href="<spring:url value="/login"/>">Login</a></li>
+                                </sec:authorize>
+                                <sec:authorize access="isAuthenticated()">
+                                    <li><a href="<spring:url value="/logout"/>">Logout</a></li>
+                                </sec:authorize>
+                                <li><a href="<spring:url value="/"/>">Home</a></li>
                                 <li><a href="/">New Post</a></li>
                                 <li><a href="#">Pages</a>
                                     <ul class="dropdown">

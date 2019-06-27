@@ -1,27 +1,23 @@
 package org.itstep.controller;
 
 import lombok.extern.slf4j.Slf4j;
-import org.itstep.domain.dto.PostDto;
 import org.itstep.domain.entity.Author;
 import org.itstep.domain.entity.Category;
-import org.itstep.domain.entity.Post;
 import org.itstep.domain.entity.Tag;
 import org.itstep.service.BlogService;
 import org.itstep.service.DtoConverter;
 import org.itstep.service.EmailService;
 import org.itstep.service.UploadService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping(path = "/admin")
@@ -30,14 +26,10 @@ public class AdminController {
 
     private EmailService emailService;
     private BlogService blogService;
-    private DtoConverter dtoConverter;
-    private UploadService uploadService;
 
     @Autowired
-    public AdminController(BlogService blogService, DtoConverter dtoConverter, UploadService uploadService, EmailService emailService) {
+    public AdminController(BlogService blogService, EmailService emailService) {
         this.blogService = blogService;
-        this.dtoConverter = dtoConverter;
-        this.uploadService = uploadService;
         this.emailService = emailService;
     }
 
@@ -100,32 +92,13 @@ public class AdminController {
         return "redirect:/admin/author";
     }
 
-    @GetMapping("/post")
-    public String post(Model model) {
-        log.info("Show all posts");
-        model.addAttribute("model", new PostDto());
-        return "admin/post/index";
-    }
-
-    @PostMapping("/post")
-    public String create(@ModelAttribute @Validated PostDto postDto, BindingResult bindingResult,
-                         @RequestParam("image") MultipartFile image) throws IOException {
-        log.info("Save post: " + postDto);
-        log.info("Save image: " + image);
-        if (bindingResult.hasErrors()) {
-            return "admin/post/index";
-        }
-        Post post = dtoConverter.convert(postDto);
-        post.setImageUrl(uploadService.saveImage(image));
-        blogService.savePost(post);
-        return "redirect:/admin/post";
-    }
-
+    @PreAuthorize("hasRole(ROLE_ADMIN)")
     @GetMapping("/sendemails")
     public String sendEmails() {
         return "admin/sendemails";
     }
 
+    @PreAuthorize("hasRole(ROLE_ADMIN)")
     @PostMapping("/sendemails")
     public String sendEmails(String subject, String message) {
         log.info("send email: subject: " + subject + " message: " + message);

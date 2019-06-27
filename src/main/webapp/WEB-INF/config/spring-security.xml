@@ -5,13 +5,15 @@
              xmlns:p="http://www.springframework.org/schema/p"
              xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <http use-expressions="false">
+    <global-method-security pre-post-annotations="enabled" jsr250-annotations="enabled"/>
+    <http use-expressions="true">
         <intercept-url pattern="/admin*" access="ROLE_ADMIN"/>
         <intercept-url pattern="/console*" access="ROLE_ADMIN"/>
-        <intercept-url pattern="*" access="ROLE_ANONYMOUS,ROLE_ADMIN"/>
+        <intercept-url pattern="/control*" access="hasAnyRole(ROLE_ADMIN,ROLE_AUTHOR)"/>
+        <intercept-url pattern="*" access="hasAnyRole(ROLE_ANONYMOUS,ROLE_ADMIN,ROLE_AUTHOR)"/>
         <anonymous username="guest" granted-authority="ROLE_ANONYMOUS"/>
         <form-login />
-        <logout/>
+        <logout logout-success-url="/"/>
 <!--        <http-basic/>-->
         <csrf disabled="true"/>
         <headers>
